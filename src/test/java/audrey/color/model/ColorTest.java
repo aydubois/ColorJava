@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNotSame;
+import static org.junit.Assert.assertNotEquals;
 
 public class ColorTest {
     private Color color1;
@@ -141,11 +143,40 @@ public class ColorTest {
     }
     ///////////////////////////////////////////////
 
+    /////////// TESTS GETTERS NOT OK //////////////////
+    @Test
+    public void testGetRedFalse(){
+        assertNotEquals(150, color1.getRed());
+        assertNotEquals(150, color2.getRed());
+    }
 
-    /////////// TESTS GETTERS OK //////////////////
+    @Test
+    public void testGetGreenFalse(){
+        assertNotEquals(100, color1.getGreen());
+        assertNotEquals(100, color2.getGreen());
+    }
+
+    @Test
+    public void testGetBlueFalse(){
+        assertNotEquals(250, color1.getBlue());
+        assertNotEquals(250, color2.getBlue());
+    }
+
+    @Test
+    public void testGetHexValueFalse(){
+        assertNotEquals("6496C8", color1.getHexValue());
+        assertNotEquals("6496C8", color2.getHexValue());
+    }
+    ///////////////////////////////////////////////
+
+
+    ////////////////////////////////////////////////
     @Test
     public void testToString(){
+
         assertEquals("[value=#6496C8, r=100, g=150, b=200]", color1.toString());
+        assertEquals("[value=#6496C8, r=100, g=150, b=200]", color2.toString());
+
     }
     ///////////////////////////////////////////////
 
