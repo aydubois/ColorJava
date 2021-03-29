@@ -10,7 +10,7 @@ public class Color {
     private String hexValue;
     private static  final String INTERVAL_NB_ERROR = "Les paramètres doivent être compris entre 0 et 255.";
     private static final String HEX_ERROR = "Le paramètre donné n'est pas un code héxadécimal.";
-
+    private static final String NULL_ERROR  = "Le paramètre attendu ne peut pas être null";
 
     /**
      *
@@ -33,8 +33,8 @@ public class Color {
      * @param hexValue - String representing a hexadecimal code - example : "#5496C8"
      * @throws IllegalArgumentException when hexValue doesn't match with "^#([A-F0-9]{6})$"
      */
-    public Color(String hexValue) throws  IllegalArgumentException {
-        if(!checkHexValue(hexValue)){
+    public Color(String hexValue) throws  IllegalArgumentException, NullPointerException {
+        if("".equals(hexValue) || hexValue == null || !checkHexValue(hexValue)){
             throw new IllegalArgumentException(HEX_ERROR);
         }
         this.hexValue = hexValue;
@@ -102,7 +102,7 @@ public class Color {
      * @throws IllegalArgumentException when hexValue doesn't match with "^#([A-F0-9]{6})$"
      */
     public void setHexValue(String hexValue) throws IllegalArgumentException{
-        if(!checkHexValue(hexValue)){
+        if("".equals(hexValue) || hexValue == null || !checkHexValue(hexValue)){
             throw new IllegalArgumentException(HEX_ERROR);
         }
         this.hexValue = hexValue;

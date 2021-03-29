@@ -63,6 +63,9 @@ public class ColorTest {
     public void testColor_exceptionHexaNotExpectedCharacter(){
         Color color = new Color("#PM96C8");
     }
+
+    @Test(expected = NullPointerException.class)
+    public void testColor_exceptionHexaNull(){Color color = new Color("");}
     ////////////////////////////////////////////
 
 
