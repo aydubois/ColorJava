@@ -8,7 +8,8 @@ public class Color {
     private int green;
     private int blue;
     private String hexValue;
-    private final String intervalNbError = "Les paramètres doivent être compris entre 0 et 255.";
+    private static  final String INTERVAL_NB_ERROR = "Les paramètres doivent être compris entre 0 et 255.";
+    private static final String HEX_ERROR = "Le paramètre donné n'est pas un code héxadécimal.";
 
 
     /**
@@ -20,7 +21,7 @@ public class Color {
      */
     public Color(int red, int green, int blue) throws IllegalArgumentException {
         if(!checkNbInterval(red) ||!checkNbInterval(green) || !checkNbInterval(blue)){
-            throw new IllegalArgumentException(intervalNbError);
+            throw new IllegalArgumentException(INTERVAL_NB_ERROR);
         }
         this.red = red;
         this.green = green;
@@ -34,7 +35,7 @@ public class Color {
      */
     public Color(String hexValue) throws  IllegalArgumentException {
         if(!checkHexValue(hexValue)){
-            throw new IllegalArgumentException("Le paramètre donné n'est pas un code héxadécimal.");
+            throw new IllegalArgumentException(HEX_ERROR);
         }
         this.hexValue = hexValue;
         this.red = Integer.valueOf( hexValue.substring( 1, 3 ), 16 );
@@ -52,7 +53,7 @@ public class Color {
      */
     public void setRed(int red)throws IllegalArgumentException {
         if(!checkNbInterval(red) ){
-            throw new IllegalArgumentException(intervalNbError);
+            throw new IllegalArgumentException(INTERVAL_NB_ERROR);
         }
         this.red = red;
     }
@@ -62,12 +63,12 @@ public class Color {
     }
 
     /**
-     * @param green - number between 0 and 255, representing the colour red
+     * @param green - number between 0 and 255, representing the colour green
      * @throws IllegalArgumentException when green < 0 or numbers > 255
      */
     public void setGreen(int green)throws IllegalArgumentException {
         if(!checkNbInterval(green)){
-            throw new IllegalArgumentException(intervalNbError);
+            throw new IllegalArgumentException(INTERVAL_NB_ERROR);
         }
         this.green = green;
     }
@@ -78,12 +79,12 @@ public class Color {
 
 
     /**
-     * @param blue - number between 0 and 255, representing the colour red
+     * @param blue - number between 0 and 255, representing the colour blue
      * @throws IllegalArgumentException when blue < 0 or numbers > 255
      */
     public void setBlue(int blue)throws IllegalArgumentException {
         if(!checkNbInterval(blue)){
-            throw new IllegalArgumentException(intervalNbError);
+            throw new IllegalArgumentException(INTERVAL_NB_ERROR);
         }
         this.blue = blue;
     }
@@ -99,7 +100,7 @@ public class Color {
      */
     public void setHexValue(String hexValue) throws IllegalArgumentException{
         if(!checkHexValue(hexValue)){
-            throw new IllegalArgumentException("Le paramètre donné n'est pas un code héxadécimal.");
+            throw new IllegalArgumentException(HEX_ERROR);
         }
         this.hexValue = hexValue;
     }
