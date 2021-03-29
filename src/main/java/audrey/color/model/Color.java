@@ -26,7 +26,7 @@ public class Color {
         this.red = red;
         this.green = green;
         this.blue = blue;
-        this.hexValue = String.format("#%02X%02X%02X", red, green, blue);
+        this.changeHexValue();
     }
 
     /**
@@ -38,9 +38,7 @@ public class Color {
             throw new IllegalArgumentException(HEX_ERROR);
         }
         this.hexValue = hexValue;
-        this.red = Integer.valueOf( hexValue.substring( 1, 3 ), 16 );
-        this.green = Integer.valueOf( hexValue.substring( 3, 5 ), 16 );
-        this.blue = Integer.valueOf( hexValue.substring( 5, 7 ), 16 );
+        this.changeRGB();
     }
 
     public int getRed() {
@@ -56,6 +54,7 @@ public class Color {
             throw new IllegalArgumentException(INTERVAL_NB_ERROR);
         }
         this.red = red;
+        this.changeHexValue();
     }
 
     public int getGreen() {
@@ -71,6 +70,8 @@ public class Color {
             throw new IllegalArgumentException(INTERVAL_NB_ERROR);
         }
         this.green = green;
+        this.changeHexValue();
+
     }
 
     public int getBlue() {
@@ -87,6 +88,8 @@ public class Color {
             throw new IllegalArgumentException(INTERVAL_NB_ERROR);
         }
         this.blue = blue;
+        this.changeHexValue();
+
     }
 
     public String getHexValue() {
@@ -103,6 +106,8 @@ public class Color {
             throw new IllegalArgumentException(HEX_ERROR);
         }
         this.hexValue = hexValue;
+        this.changeRGB();
+
     }
 
     public String toString(){
@@ -118,5 +123,15 @@ public class Color {
 
     private boolean checkNbInterval(int numberColor){
         return numberColor > 0 && numberColor < 255;
+    }
+
+    private void changeHexValue(){
+        this.hexValue = String.format("#%02X%02X%02X", this.red, this.green, this.blue);
+    }
+
+    private void changeRGB(){
+        this.red = Integer.valueOf( this.hexValue.substring( 1, 3 ), 16 );
+        this.green = Integer.valueOf( this.hexValue.substring( 3, 5 ), 16 );
+        this.blue = Integer.valueOf( this.hexValue.substring( 5, 7 ), 16 );
     }
 }

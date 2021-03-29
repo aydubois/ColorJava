@@ -35,6 +35,21 @@ public class ColorTest {
     public void testColor_exceptionBlue(){
         Color color = new Color(150, 150, 300);
     }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void testColor_exceptionRedNegatif(){
+        Color color = new Color(-5, 150, 200);
+    }
+    @Test(expected=IllegalArgumentException.class)
+    public void testColor_exceptionGreenNegatif(){
+        Color color = new Color(150, -5, 200);
+    }
+    @Test(expected=IllegalArgumentException.class)
+    public void testColor_exceptionBlueNegatif(){
+        Color color = new Color(150, 150, -5);
+    }
+
+
     @Test(expected=IllegalArgumentException.class)
     public void testColor_exceptionHexaHash(){
         Color color = new Color("6496C8");
@@ -82,8 +97,8 @@ public class ColorTest {
     /////////// TESTS SETTERS OK //////////////////
     @Test
     public void testSetRed(){
-        color1.setRed(100);
-        assertEquals(100, color1.getRed());
+        color1.setRed(150);
+        assertEquals(150, color1.getRed());
     }
     @Test
     public void testSetGreen(){
@@ -100,40 +115,72 @@ public class ColorTest {
         color1.setHexValue("#5496C8");
         assertEquals("#5496C8", color1.getHexValue());
     }
+    @Test
+    public void testSetRedHex(){
+        color1.setRed(150);
+        assertEquals("#9696C8", color1.getHexValue());
+    }
+    @Test
+    public void testSetGreenHex(){
+        color1.setGreen(100);
+        assertEquals("#6464C8", color1.getHexValue());
+    }
+    @Test
+    public void testSetBlueHex(){
+        color1.setBlue(100);
+        assertEquals("#649664", color1.getHexValue());
+    }
+    @Test
+    public void testSetHexValueRGB(){
+        color1.setHexValue("#649664");
+        assertEquals(100, color1.getRed());
+        assertEquals(150, color1.getGreen());
+        assertEquals(100, color1.getBlue());
+    }
     ///////////////////////////////////////////////
 
     /////////// TESTS GETTERS OK //////////////////
     @Test
     public void testGetRed(){
         assertEquals(100, color1.getRed());
-        //assertEquals(150, color1.getGreen());
-        //assertEquals(200, color1.getBlue());
-
         assertEquals(100, color2.getRed());
-        //assertEquals(150, color2.getGreen());
-        //assertEquals(200, color2.getBlue());
     }
 
     @Test
-    public void testGetGreen(){
-        //assertEquals(100, color1.getRed());
+    public void testGetRedCheckBlueGreen(){
         assertEquals(150, color1.getGreen());
-        //assertEquals(200, color1.getBlue());
-
-        //assertEquals(100, color2.getRed());
-        assertEquals(150, color2.getGreen());
-        //assertEquals(200, color2.getBlue());
-    }
-
-    @Test
-    public void testGetBlue(){
-        //assertEquals(100, color1.getRed());
-        //assertEquals(150, color1.getGreen());
         assertEquals(200, color1.getBlue());
 
-        //assertEquals(100, color2.getRed());
-        //assertEquals(150, color2.getGreen());
+        assertEquals(150, color2.getGreen());
         assertEquals(200, color2.getBlue());
+    }
+    @Test
+    public void testGetGreen(){
+        assertEquals(150, color1.getGreen());
+        assertEquals(150, color2.getGreen());
+    }
+
+    @Test
+    public void testGetGreenCheckRedBlue(){
+        assertEquals(100, color1.getRed());
+        assertEquals(200, color1.getBlue());
+
+        assertEquals(100, color2.getRed());
+        assertEquals(200, color2.getBlue());
+    }
+    @Test
+    public void testGetBlue(){
+        assertEquals(200, color1.getBlue());
+        assertEquals(200, color2.getBlue());
+    }
+
+    @Test
+    public void testGetBlueCheckRedGreen(){
+        assertEquals(100, color1.getRed());
+        assertEquals(150, color1.getGreen());
+
+        assertEquals(100, color2.getRed());
+        assertEquals(150, color2.getGreen());
     }
 
     @Test
