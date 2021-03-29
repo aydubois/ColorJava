@@ -12,8 +12,12 @@ public class ColorTest {
     private Color color2;
     @Before
     public void setUp() {
-        color1 = new Color(100,150,200);
-        color2 = new Color("#6496C8");
+        try{
+            color1 = new Color(100,150,200);
+            color2 = new Color("#6496C8");
+        }catch(IllegalArgumentException e){
+            System.out.println("ERROR ====> "+e.getMessage());
+        }
     }
 
     /////////// TESTS CONSTRUCTORS EXCEPTION ///////////////
@@ -92,7 +96,7 @@ public class ColorTest {
     @Test
     public void testSetHexValue(){
         color1.setHexValue("#5496C8");
-        assertEquals(100, color1.getHexValue());
+        assertEquals("#5496C8", color1.getHexValue());
     }
     ///////////////////////////////////////////////
 
